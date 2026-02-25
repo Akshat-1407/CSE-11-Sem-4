@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        #box {
+            background: red;
+            width: 5rem;
+            height: 5rem;
+        }
+        #drop {
+            height: 10rem;
+            width: 10rem;
+            border: 2px dashed black;
+            margin-top: 5rem;
+        }
+    </style>
+</head>
+<body>
+    <div id="box" draggable="true"></div>
+
+    <div id="drop"></div>
+
+    <script>
+    
+        // let box = document.querySelector("#box");
+        // let dorp = document.querySelector("#drop");
+    
+        box.addEventListener("dragstart", function(e) {
+            e.dataTransfer.setData("text", "box");
+        })
+        drop.addEventListener("dragover", function(e) {
+            e.preventDefault();
+        })
+        drop.addEventListener("drop", function(e) {
+            let data = e.dataTransfer.getData("text");
+            drop.appendChild(document.getElementById(data));
+        })
+    
+    </script>
+</body>
+
+
+</html>

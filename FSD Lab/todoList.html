@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Todo App</title>
+</head>
+<body>
+    <h1>Todo App</h1>
+    <input type="text" placeholder="Enter a task">
+    <button>Add Task</button>
+    <ul>
+        <li>Eat <button class="delete">delete</button></li>
+        <li>Sleep <button class="delete">delete</button></li>
+    </ul>
+    
+    <script>
+        let inp = document.querySelector("input");
+        let btn = document.querySelector("button");
+        let ul = document.querySelector("ul");
+
+        btn.addEventListener("click", function() {
+            let task = document.createElement("li");
+            task.innerText = inp.value + "          ";
+            ul.appendChild(task);
+            console.log("task added")
+            inp.value = "";
+
+            let delbtn = document.createElement("button");
+            delbtn.classList.add("delete");
+            delbtn.innerText = "delete"
+            task.appendChild(delbtn);
+        });
+
+        ul.addEventListener("click", function(event) {
+            if (event.target.nodeName == "BUTTON") {
+                listItem = event.target.parentElement;
+                listItem.remove();
+                console.log("task deleted")
+            }
+                
+        })
+    </script>
+</body>
+</html>
