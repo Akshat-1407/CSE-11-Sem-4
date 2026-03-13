@@ -5,12 +5,12 @@
 // Write a Java program to create a Student class, initialize student details using a parameterized constructor, 
 // and display the student information using class objects and member functions.
 
-class Student {
+class Students {
     int rollNo;
     String name;
     double marks;
 
-    Student(int r, String n, double m) {
+    Students(int r, String n, double m) {
         rollNo = r;
         name = n;
         marks = m;
@@ -24,8 +24,8 @@ class Student {
 
 public class Experiment_5 {
     public static void main(String[] args) {
-        Student s1 = new Student(101, "Rahul", 85.5);
-        Student s2 = new Student(102, "Anita", 90.0);
+        Students s1 = new Students(101, "Rahul", 85.5);
+        Students s2 = new Students(102, "Anita", 90.0);
 
         System.out.println("Student 1 Details:");
         s1.display();
