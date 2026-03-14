@@ -12,6 +12,7 @@ public class Experiment_13 {
             int result = 2 / 0; 
             // Potential ArrayIndexOutOfBoundsException
             a[10] = 50; 
+            System.out.println(result);
             
         } catch (ArithmeticException e) {
             System.out.println("Warning: Arithmetic Error (Division by zero).");
