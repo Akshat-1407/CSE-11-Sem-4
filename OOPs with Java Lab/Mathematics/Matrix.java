@@ -1,5 +1,4 @@
 package Mathematics;
-
 public class Matrix {
     private int rows, cols;
     private int[][] data;
@@ -12,7 +11,7 @@ public class Matrix {
     // Static method to add two matrices
     public static Matrix add(Matrix m1, Matrix m2) {
         if (m1.rows != m2.rows || m1.cols != m2.cols) {
-            System.out.println("Error: Matrix dimensions must match for addition.");
+            System.out.println("Error");
             return null;
         }
         int[][] result = new int[m1.rows][m1.cols];
@@ -26,7 +25,7 @@ public class Matrix {
     // Static method to subtract two matrices
     public static Matrix subtract(Matrix m1, Matrix m2) {
         if (m1.rows != m2.rows || m1.cols != m2.cols) {
-            System.out.println("Error: Matrix dimensions must match for subtraction.");
+            System.out.println("Error");
             return null;
         }
         int[][] result = new int[m1.rows][m1.cols];
