@@ -8,13 +8,13 @@
 
 // Multiple Inheritance Using Classes (Not Supported)
 
-class A {
+class AC {
     void show() {
         System.out.println("Class A");
     }
 }
 
-class B {
+class BC {
     void show() {
         System.out.println("Class B");
     }
