@@ -2,8 +2,8 @@
 // Class = CSE 11
 // Roll No. = 2400320100133
 
-// Create a package named Mathematics and add a class Matrix with methods to add and 
-// subtract matrices. Write a Java program importing the Mathematics package and use the classes defined in it.
+// Create a package named Mathematics and add a class Matrix with methods to add and subtract 
+// matrices. Write a Java program importing the Mathematics package and use the classes defined in it.
 
 import Mathematics.Matrix;
 public class Experiment_16 {
@@ -29,7 +29,6 @@ public class Experiment_16 {
         if (diff != null) diff.display();
     }
 } /* OUTPUT
-
     Matrix 1:
     10 20 
     30 40 
