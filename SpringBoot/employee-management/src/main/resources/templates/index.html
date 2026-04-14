@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+    <head>
+        <title>Employee Management using themeleaf</title>
+
+        <style>
+            body {
+                background-size: cover;
+                font-family: Arial;
+            }
+
+            .container {
+                background: rgba(255, 255, 255, 0.9);
+                width: 350px;
+                padding: 20px;
+                margin: 100px auto;
+                border-radius: 10px;
+                text-align: center;
+            }
+
+            input {
+                width: 90%;
+                padding: 8px;
+                margin: 5px;
+            }
+
+            button {
+                padding: 8px 15px;
+                margin-top: 10px;
+            }
+        </style>
+    </head>
+
+    <body>
+
+        <div class="container">
+
+            <h2>Add Employee</h2>
+
+            <form action="/add" method="post">
+                ID: <input type="number" name="id"><br>
+                Name: <input type="text" name="name"><br>
+                Department: <input type="text" name="department"><br>
+                <button type="submit">Submit</button>
+            </form>
+            <h2>Employee List</h2>
+
+            <table border="1">
+                <tr>
+                    <th>ID</th>
+                    <th>Name</th>
+                    <th>Department</th>
+                </tr>
+
+                <tr th:each="emp : ${employees}">
+                    <td th:text="${emp.id}"></td>
+                    <td th:text="${emp.name}"></td>
+                    <td th:text="${emp.department}"></td>
+                </tr>
+
+            </table>
+        </div>
+
+    </body>
+</html>
