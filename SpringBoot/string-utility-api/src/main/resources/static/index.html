@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>String Utility API</title>
+
+    <style>
+        body {
+            font-family: Arial;
+            text-align: center;
+            background: #f4f4f4;
+            margin-top: 50px;
+        }
+
+        .container {
+            background: white;
+            padding: 20px;
+            width: 400px;
+            margin: auto;
+            border-radius: 10px;
+            box-shadow: 0 0 10px #ccc;
+        }
+
+        input {
+            width: 80%;
+            padding: 10px;
+            margin: 10px;
+        }
+
+        button {
+            padding: 10px 15px;
+            margin: 5px;
+            border: none;
+            background: #007BFF;
+            color: white;
+            cursor: pointer;
+        }
+
+        button:hover {
+            background: #0056b3;
+        }
+
+        #result {
+            font-size: 20px;
+            color: green;
+            margin-top: 15px;
+        }
+    </style>
+</head>
+
+<body>
+
+<h1>String Utility Tool</h1>
+
+<div class="container">
+    <input type="text" id="inputText" placeholder="Enter text here">
+
+    <div>
+        <button onclick="reverse()">Reverse</button>
+        <button onclick="uppercase()">Uppercase</button>
+        <button onclick="lowercase()">Lowercase</button>
+        <button onclick="count()">Count</button>
+    </div>
+
+    <h2>Result:</h2>
+    <p id="result"></p>
+</div>
+
+<script>
+    const BASE_URL = "http://localhost:8080/api/string";
+
+    function getInput() {
+        return document.getElementById("inputText").value;
+    }
+
+    function reverse() {
+        fetch(`${BASE_URL}/reverse?input=${getInput()}`)
+            .then(res => res.text())
+            .then(data => showResult(data));
+    }
+
+    function uppercase() {
+        fetch(`${BASE_URL}/uppercase?input=${getInput()}`)
+            .then(res => res.text())
+            .then(data => showResult(data));
+    }
+
+    function lowercase() {
+        fetch(`${BASE_URL}/lowercase?input=${getInput()}`)
+            .then(res => res.text())
+            .then(data => showResult(data));
+    }
+
+    function count() {
+        fetch(`${BASE_URL}/count?input=${getInput()}`)
+            .then(res => res.text())
+            .then(data => showResult("Length: " + data));
+    }
+
+    function showResult(result) {
+        document.getElementById("result").innerText = result;
+    }
+</script>
+
+</body>
+</html>

@@ -1,0 +1,1 @@
+Develop a spring boot web service that performs operations like reversing a string, converting case, and counting characters.
