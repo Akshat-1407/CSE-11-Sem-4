@@ -1,6 +1,6 @@
 package com.example.employee_crud_api.model;
 
-public class Employee {
+public class EmployeeModel {
 
     private int id;
     private String name;
@@ -8,10 +8,10 @@ public class Employee {
     private double salary;
 
     // Default Constructor
-    public Employee() {}
+    public EmployeeModel() {}
 
     // Parameterized Constructor
-    public Employee(int id, String name, String department, double salary) {
+    public EmployeeModel(int id, String name, String department, double salary) {
         this.id = id;
         this.name = name;
         this.department = department;

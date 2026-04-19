@@ -1,6 +1,6 @@
 package com.example.employee_crud_api.controller;
 
-import com.example.employee_crud_api.model.Employee;
+import com.example.employee_crud_api.model.EmployeeModel;
 import com.example.employee_crud_api.service.EmployeeService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
@@ -16,26 +16,26 @@ public class EmployeeController {
 
     // CREATE
     @PostMapping
-    public Employee createEmployee(@RequestBody Employee emp) {
+    public EmployeeModel createEmployee(@RequestBody EmployeeModel emp) {
         return service.addEmployee(emp);
     }
 
     // READ ALL
     @GetMapping
-    public List<Employee> getAllEmployees() {
+    public List<EmployeeModel> getAllEmployees() {
         return service.getAllEmployees();
     }
 
     // READ BY ID
     @GetMapping("/{id}")
-    public Employee getEmployee(@PathVariable int id) {
+    public EmployeeModel getEmployee(@PathVariable int id) {
         return service.getEmployeeById(id);
     }
 
     // UPDATE
     @PutMapping("/{id}")
-    public Employee updateEmployee(@PathVariable int id,
-                                   @RequestBody Employee emp) {
+    public EmployeeModel updateEmployee(@PathVariable int id,
+                                   @RequestBody EmployeeModel emp) {
         return service.updateEmployee(id, emp);
     }
 
