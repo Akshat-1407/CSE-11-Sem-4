@@ -53,6 +53,12 @@
 * Commonly used in loops to iterate over collections.
 * It provides a safe way to access elements without exposing the internal structure of the collection.
 
+| Method       | Return Type | Description                                                                 |
+|--------------|-------------|-----------------------------------------------------------------------------|
+| `hasNext()`  | `boolean`   | Returns true if there are more elements to iterate.                         |
+| `next()`     | `E`         | Returns the next element in the collection.                                 |
+| `remove()`   | `void`      | Removes the last element returned by the iterator (may not be supported).   |
+
 ```java
     List<String> movies = new ArrayList<>(Arrays.asList("Inception", "Interstellar", "Tenet"));
     Iterator<String> it = movies.iterator();
@@ -64,6 +70,7 @@
         }
     }
 ```
+
 
 ## Vector
 * java.util Package
@@ -118,13 +125,23 @@
 * Implemented as `Doubly LinkedList`, Allows Duplicate, Dynamic Size, Allows Null Values, Ordered
 * It implements both the List and Deque (extends Queue) interfaces, which means it can be used as a list, a queue, or a stack.
 
-* add, addFirst, addLast, remove, removeFirst, removeLast, getFirst, getLast
+| Method            | Return Type | Description                                                                |
+|-------------------|-------------|----------------------------------------------------------------------------|
+| `add(E e)`        | `boolean`   | Appends the specified element to the end of the list.                      |
+| `addFirst(E e)`   | `void`      | Inserts the element at the beginning of the list.                          |
+| `addLast(E e)`    | `void`      | Appends the element to the end of the list.                                |
+| `remove()`        | `E`         | Removes and returns the first element. Throws exception if list is empty.  |
+| `removeFirst()`   | `E`         | Removes and returns the first element. Throws exception if empty.          |
+| `removeLast()`    | `E`         | Removes and returns the last element. Throws exception if empty.           |
+| `getFirst()`      | `E`         | Returns the first element without removing it. Throws exception if empty.  |
+| `getLast()`       | `E`         | Returns the last element without removing it. Throws exception if empty.   |
 
 
 ## Set Interface
 * java.util Package
 * does not allow duplicate elements
 * Since Set is an interface, we cannot create objects directly from it. Instead, we use classes like HashSet, LinkedHashSet, and TreeSet, which are different implementations of the Set interface.
+    * Set does not introduce many new methods It mainly enforces: No duplicates, No indexing. So most methods are inherited from Collection, but behavior is different (uniqueness).
 
 
 ## HashSet Class
@@ -153,6 +170,17 @@
 * Like HashSet, it `does not allow duplicates` and `allows at most one null element`.
 * LinkedHashSet is `not thread-safe`.
 * The performance is slightly slower than HashSet due to the overhead of maintaining the order.
+
+```java
+    public static void main(String[] args) {
+        LinkedHashSet<String> names = new LinkedHashSet<>();
+        names.add("Vaibhav");
+        names.add("Jagan");
+        names.add("Sakshar");
+        names.add("Akshar");
+        System.out.println("HashSet: " + names);
+    }
+```
 
 
 ## SortedSet Interface
@@ -350,4 +378,116 @@ public static void main(String[] args) {
         }
     }
 ```
+______________________________________________________________________________________________________________________________________________________________________________________
+
+Collections -> Class
+Collection -> Interface
+
+
+## Comparable Interface
+* The Comparable interface is used to define the default ordering of objects.
+* A class that implements Comparable must define the compareTo() method: int compareTo(T o)
+* It is part of the java.lang package.
+* The compareTo() method compares the current object with another object of the same type.
+
+```java
+class Student implements Comparable<Student> {
+    int rollNo;
+    String name;
+    int marks;
+
+    public Student(int rollNo, String name, int marks) {
+        this.rollNo = rollNo;
+        this.name = name;
+        this.marks = marks;
+    }
+
+    public int compareTo(Student s) {
+        return this.marks - s.marks; // Default order: ascending by marks
+    }
+}
+
+public class ComparableInterface {
+    public static void main(String[] args) {
+        Student student1 = new Student(1, "Anubhav", 86);
+        Student student2 = new Student(2, "Anand", 86);
+
+        if (student1.compareTo(student2) > 0)
+            System.out.println(student1.name + " has more marks than " + student2.name);
+        else if (student1.compareTo(student2) < 0)
+            System.out.println(student1.name + " has less marks than " + student2.name);
+        else
+            System.out.println(student1.name + " has same marks as " + student2.name);
+    }
+}
+```
+
+
+## Comparator Interface
+* The Comparator interface is used to define a custom sorting order for objects outside the class.
+* It is part of the java.util package and requires us to define the method: int compare(T o1, T o2)
+* It is useful when:
+    * We cannot modify the original class.
+    * We want to sort the same objects in different ways.
+
+```java
+import java.util.Comparator;
+import java.util.TreeSet;
+
+class Student {
+    int rollNo;
+    String name;
+    int marks;
+
+    public Student(int rollNo, String name, int marks) {
+        this.rollNo = rollNo;
+        this.name = name;
+        this.marks = marks;
+    }
+
+    public String toString() {
+        return "{Roll No: " + rollNo + ", Name: " + name + ", Marks: " + marks + "}";
+    }
+}
+
+class MarksComparator implements Comparator<Student> {
+    public int compare(Student s1, Student s2) {
+        return s1.marks - s2.marks;
+    }
+}
+
+public class ComparatorInterface {
+    public static void main(String[] args) {
+        Student student1 = new Student(1, "Anubhav", 86);
+        Student student2 = new Student(2, "Anand", 89);
+
+        TreeSet<Student> students = new TreeSet<>(new MarksComparator());
+        students.add(student1);
+        students.add(student2);
+        System.out.println(students);
+    }
+}
+```
+
+| Comparable                                                                 | Comparator                                                                 |
+|-----------------------------------------------------------------------------|----------------------------------------------------------------------------|
+| Comparable provides a single sorting sequence. We can sort the collection on the basis of a single element such as id, name, and price. | provides multiple sorting sequences. We can sort collection on the basis of multiple elements such as id, name, and price etc. |
+| affects the original class, actual class is modified.                       | doesn't affect the original class, i.e., the actual class is not modified. |
+| provides compareTo() method to sort elements.                               | provides compare() method to sort elements.                                |
+| It is present in java.lang package.                                         | It is present in the java.util package.                                    |
+| sorts the list elements of Comparable type by Collections.sort(List) method. | We can sort the list elements of Comparator type by Collections.sort(List, Comparator) method |
+
+
+## Sorting
+* Sorting is the process of arranging elements in a particular order, typically ascendin or descending. 
+* The Java Collections Framework provides utility methods in the ‘Collections’ class and built-in interfaces like Comparable and Comparator to make sorting flexible and easy.
+
+Sorting can be performed in various ways -
+1. Using `Collections.sort(List<T>)`: This method sorts the elements of the given list in their natural order.
+2. Using `Collections.sort(List<T>, Comparator<T>)`: This method is used when we want to define our own custom sorting logic. We provide a Comparator that defines the comparison rules.
+3. Sorting Objects of User Defined Classes.
+
+
+
+
 
